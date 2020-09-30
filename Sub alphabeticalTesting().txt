@@ -1,0 +1,23 @@
+Sub alphabeticalTesting()
+
+    Dim ts
+    
+    Set ts = CreateObject(Scripting.Dictionary)
+    Dim LastRow As Integer
+    Dim i As Integer
+    Dim tickerSymbolCount As Integer
+    
+    tickerSymbolCount = 1
+    Range(I1).Value = Ticker Symbol
+    
+    LastRow = LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+    For i = 1 To LastRow
+        If ts.Exists(Cells(i, 1).Value  True) Then
+        ts.Add tickerSymbolCount, Cells(i, 1).Value
+        tickerSymbolCount = tickerSymbolCount + 1
+        End If
+    Next i
+    
+
+    
+End Sub
