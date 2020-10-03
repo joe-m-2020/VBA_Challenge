@@ -169,15 +169,3 @@ Sub Ticker_Symbol()
     Next ws
     
 
-   
-End Sub
-       
-        'Find top increase decrease and volume
-        Dim inc As Range
-        Dim vol As Range
-    
-        Dim topInc As Double
-        Dim topDec As Double
-        Dim topVol As Long
-    
-        Set inc = ws.Range("K:K")
