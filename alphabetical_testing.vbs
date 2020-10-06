@@ -1,7 +1,4 @@
 
-
-
-
 Sub Ticker_Symbol()
     Dim ws As Worksheet
     Set starting_ws = ActiveSheet
@@ -12,14 +9,15 @@ Sub Ticker_Symbol()
     
        
             Dim wsName As String
-            Dim LastRow As Long
-            Dim tsCount As Long
-            Dim I As Long
-            Dim J As Long
+            Dim LastRow As LongLong
+            Dim tsCount As LongLong
+            Dim I As LongLong
+            Dim J As LongLong
             Dim yearlyChange As Variant
             Dim Year_Open As Variant
             Dim Year_Close As Variant
-            Dim TotalStock As Long
+            Dim TotalStock As LongLong
+            
         
         
         
@@ -42,7 +40,7 @@ Sub Ticker_Symbol()
         Range("J1") = "Yearly Change"
         Range("K1") = "Percent Change"
         Range("L1") = "Total Stock Volume"
-        On Error Resume Next
+        
         
         
         
@@ -75,8 +73,13 @@ Sub Ticker_Symbol()
                     
                 Else
                     Cells(tsCount, 10).Value = yearlyChange
-                    Cells(tsCount, 11) = (Year_Close - Year_Open) / Year_Open 'yearly change percent
-              
+                    If YearOpen = 0 Then
+                        Cells(tsCount, 11) = 100
+                    Else
+                    
+                        Cells(tsCount, 11) = (Year_Close - Year_Open) / Year_Open 'yearly change percent
+                    End If
+                    
                 End If
             
             'Total Stock Volume of the rows inbetween the first and last unique value
@@ -99,7 +102,7 @@ Sub Ticker_Symbol()
     
         Dim topInc As Double
         Dim topDec As Double
-        Dim topVol As Long
+        Dim topVol As LongLong
     
         Set inc = ws.Range("K:K")
         Set vol = ws.Range("L:L")
@@ -164,8 +167,11 @@ Sub Ticker_Symbol()
             
             
         Next J
-        ws.Range("O:O,Q:Q").EntireColumn.AutoFit
+        ws.Range("O:O,Q:Q").Column.AutoFit
       
     Next ws
     
+
+   
 End Sub
+
